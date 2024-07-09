@@ -1,7 +1,7 @@
 # SlackCheck
 ## Kernel Module version
 
-### Compiling the Artifact
+### Compiling the Module
 
 Compiling the kernel is a long process, as it involves compiling the Linux Kernel.
 To keep the filesystem tidy, I will refer to the build folder as ``~/Build``, feel
