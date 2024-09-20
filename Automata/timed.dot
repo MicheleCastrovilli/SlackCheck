@@ -1,0 +1,23 @@
+digraph state_automaton {
+	rankdir="LR"
+	{node [shape = circle] "not_started"};
+	{node [shape = plaintext, style=invis, label=""] "__init_not_started"};
+	{node [shape = circle] "ready"};
+	{node [shape = circle] "running"};
+	{node [shape = doublecircle] "terminated"};
+	{node [shape = circle] "terminated"};
+	"__init_not_started" -> "not_started";
+	"not_started" [label = "not_started"];
+	"not_started" -> "ready" [ label = "fork" ];
+	"ready" [label = "ready\nt=0"];
+	"ready" -> "running" [ label = "sched_in\nt<10ms" ];
+	"running" [label = "running"];
+	"running" -> "ready" [ label = "sched_out" ];
+	"ready" -> "terminated" [ label = "terminate" ];
+	"terminated" [label = "terminated"];
+	"running" -> "terminated" [ label = "terminate" ];
+	{ rank = min ;
+		"__init_not_started";
+		"not_started";
+	}
+}
